@@ -13,7 +13,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 cacheSolve <- function(x, ...) {
-
+  
   i <- x$getinverse()
   if(!is.null(i)) {
     message("hit cache")
@@ -22,14 +22,12 @@ cacheSolve <- function(x, ...) {
   data <- x$get()
   i <- solve(data, ...)
   x$setinverse(i)
+ # print(i)
   i
 }
-
+# Run test() for a unit test generating data and printing inverse with cache check
 test <- function(){
-  mat = matrix( 
-                c(2, 4, 1, 5), 
-                nrow=2, 
-                ncol=2)
-  x = makeCacheMatrix(mat)
-  res = cacheSolve(x)
+  B = matrix( c(2, 4, 1, 5), nrow=2, ncol=2)
+  x = makeCacheMatrix(B)
+  cacheSolve(x)
 }
